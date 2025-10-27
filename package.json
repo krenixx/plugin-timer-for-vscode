@@ -1,0 +1,42 @@
+{
+  "name": "pomodoro-timer",
+  "displayName": "Таймер работы и отдыха",
+  "description": "Работа + перерывы с настройками в панели",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onView:pomodoro-view"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pomodoro-container",
+          "title": "Таймер",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "pomodoro-container": [
+        {
+          "id": "pomodoro-view",
+          "name": "Работа и Отдых",
+          "type": "webview"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.94.0",
+    "@types/node": "20.x",
+    "typescript": "^5.5.0"
+  }
+}

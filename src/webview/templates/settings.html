@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><style>
+</style></head>
+<body>
+  <h3>Настройки Таймера</h3>
+  <label>Работа (мин):</label>
+  <input id="workInput" type="number" min="1" value="{{WORK_MINUTES}}">
+  <label>Короткий отдых (мин):</label>
+  <input id="shortInput" type="number" min="1" value="{{SHORT_BREAK_MINUTES}}">
+  <label>Длинный отдых (мин):</label>
+  <input id="longInput" type="number" min="1" value="{{LONG_BREAK_MINUTES}}">
+  <label>Циклов до длинного отдыха:</label>
+  <input id="cyclesInput" type="number" min="1" value="{{CYCLES_BEFORE_LONG_BREAK}}">
+  <div class="btns">
+    <button id="saveBtn" class="saveBtn">Сохранить</button>
+  </div>
+  <div class="btns">
+    <button id="clearTodayBtn">Сбросить сегодня</button>
+    <button id="clearAllBtn">Сбросить всё</button>
+    <button id="backBtn">Назад</button>
+  </div>
+
+  <script>
+    const vscode = acquireVsCodeApi();
+    document.getElementById('saveBtn').onclick = () => {
+      const w = parseInt(document.getElementById('workInput').value) || 25;
+      const s = parseInt(document.getElementById('shortInput').value) || 5;
+      const l = parseInt(document.getElementById('longInput').value) || 15;
+      const c = parseInt(document.getElementById('cyclesInput').value) || 4;
+      vscode.postMessage({ command: 'saveSettings', work: w, short: s, long: l, cycles: c });
+    };
+    document.getElementById('backBtn').onclick = () => vscode.postMessage({ command: 'showTimer' });
+    document.getElementById('clearTodayBtn').onclick = () => vscode.postMessage({ command: 'clearToday' });
+    document.getElementById('clearAllBtn').onclick = () => vscode.postMessage({ command: 'clearAll' });
+  </script>
+</body>
+</html>

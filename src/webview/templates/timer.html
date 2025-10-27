@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <div class="header">
+    <div class="mode">{{MODE_TEXT}}</div>
+    <button class="settings-btn" id="settingsBtn">⚙️</button>
+  </div>
+  <div class="circle-container">
+    <div class="circle"><img src="https://joeweaver.me/codepenassets/freecodecamp/challenges/build-a-pomodoro-clock/bg.png" width=350px height=350px></div>
+    <div class="timer">{{TIMER_DISPLAY}}</div>
+  <button id="startBtn" class="circle-btn">{{START_BUTTON_TEXT}}</button>
+  <button id="resetBtn" class="circle-btn">↻RESET</button>
+  </div>
+
+  <div class="stats-section">
+    <div class="stats-title">Сегодня</div>
+    <div class="stats-item">
+      <span>Работа:</span>
+      <span class="stats-value">{{TODAY_WORK}} мин</span>
+    </div>
+    <div class="stats-item">
+      <span>Отдых:</span>
+      <span class="stats-value">{{TODAY_BREAK}} мин</span>
+    </div>
+    <div class="stats-item">
+      <span>Сессий:</span>
+      <span class="stats-value">{{TODAY_SESSIONS}}</span>
+    </div>
+
+    <div class="stats-title">Всего</div>
+    <div class="stats-item">
+      <span>Работа:</span>
+      <span class="stats-value">{{TOTAL_WORK}} мин</span>
+    </div>
+    <div class="stats-item">
+      <span>Отдых:</span>
+      <span class="stats-value">{{TOTAL_BREAK}} мин</span>
+    </div>
+    <div class="stats-item">
+      <span>Сессий:</span>
+      <span class="stats-value">{{TOTAL_SESSIONS}}</span>
+    </div>
+  </div>
+
+<script>
+const vscode = acquireVsCodeApi();
+
+window.addEventListener('message', event => {
+  const message = event.data;
+  if (message.command === 'updateTimer') {
+    document.querySelector('.timer').textContent = message.time;
+    document.getElementById('startBtn').textContent = message.startButtonText;
+  }
+});
+
+document.getElementById('startBtn').onclick = () => vscode.postMessage({ command: 'toggle' });
+document.getElementById('resetBtn').onclick = () => vscode.postMessage({ command: 'reset' });
+document.getElementById('settingsBtn').onclick = () => vscode.postMessage({ command: 'showSettings' });
+</script>
+</body>
+</html>

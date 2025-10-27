@@ -1,0 +1,129 @@
+body {
+  background: #1e1e1e;
+  color: white;
+  margin: 0;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.mode {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.settings-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.4em;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.circle-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 350px;
+  height: 350px;
+}
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 350px;
+  transform: translate(-50%, -50%);
+  filter: grayscale(100%) invert(90%);
+  animation: pulse 10s infinite ease-in-out;
+}
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+.timer {
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 33px;
+  font-weight: 600;
+  line-height: 43px;
+  color: rgb(171, 171, 171);
+  font-family: 'SF Mono', monospace;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+.circle-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  
+  color: rgb(171, 171, 171);
+  padding: 20px 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+#startBtn {
+    bottom: 170px; /* отступ от низа круга */
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 15px;
+    margin-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+#resetBtn {
+  bottom: 120px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  margin-top: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.stats-section {
+  width: 100%;
+  margin-top: 10%;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+}
+
+.stats-title {
+  color: rgba(171, 171, 171);
+  margin: 10px 0;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.stats-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.stats-value {
+
+  color: rgb(193, 232, 255);
+  font-weight: bold;
+}
